@@ -1,0 +1,47 @@
+{
+  "analysis": {
+    "total_models": 12,
+    "total_enums": 0,
+    "core_models": [
+      "User",
+      "UserProfile",
+      "StyleProfile"
+    ],
+    "feature_models": {
+      "Avatar System": [
+        "Avatar3D"
+      ],
+      "Wardrobe Management": [
+        "Garment",
+        "Outfit",
+        "OutfitItem"
+      ],
+      "Social Features": [
+        "Post",
+        "Like",
+        "Comment",
+        "Follow"
+      ],
+      "Other": [
+        "WishlistItem"
+      ]
+    },
+    "relationships": []
+  },
+  "models": {
+    "User": 22,
+    "UserProfile": 21,
+    "StyleProfile": 14,
+    "Avatar3D": 18,
+    "Garment": 25,
+    "Outfit": 17,
+    "OutfitItem": 6,
+    "Post": 13,
+    "Like": 6,
+    "Comment": 8,
+    "Follow": 6,
+    "WishlistItem": 12
+  },
+  "enums": {},
+  "issues": []
+}

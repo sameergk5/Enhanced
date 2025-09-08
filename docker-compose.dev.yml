@@ -1,0 +1,111 @@
+version: "3.8"
+
+services:
+  # Frontend
+  frontend:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    depends_on:
+      - backend
+
+  # Backend API
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://wardrobe:wardrobe123@postgres:5432/wardrobe_ai
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=dev_secret_key_change_in_production
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+      - redis
+
+  # Avatar Service (3D Processing)
+  avatar-service:
+    build: ./backend/services/avatar
+    ports:
+      - "3002:3002"
+    environment:
+      - HUNYUAN3D_API_KEY=${HUNYUAN3D_API_KEY}
+      - STORAGE_BUCKET=wardrobe-avatars
+    volumes:
+      - avatar_models:/app/models
+      - ./backend/services/avatar:/app
+    depends_on:
+      - postgres
+
+  # AI Styling Service
+  ai-service:
+    build: ./backend/services/ai
+    ports:
+      - "3003:3003"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+    volumes:
+      - ./backend/services/ai:/app
+    depends_on:
+      - postgres
+
+  # Database
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=wardrobe_ai
+      - POSTGRES_USER=wardrobe
+      - POSTGRES_PASSWORD=wardrobe123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # MongoDB for unstructured data (avatar metadata, analytics)
+  mongodb:
+    image: mongo:7-jammy
+    environment:
+      - MONGO_INITDB_DATABASE=wardrobe_ai_metadata
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+
+  # MinIO for object storage (avatars, garments)
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=wardrobeadmin
+      - MINIO_ROOT_PASSWORD=wardrobe123
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+
+volumes:
+  postgres_data:
+  redis_data:
+  mongodb_data:
+  minio_data:
+  avatar_models:

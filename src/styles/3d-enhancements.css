@@ -1,0 +1,307 @@
+/* Advanced 3D Website Enhancements */
+
+/* Gradient Text Effects */
+.wardrobe-title {
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Fashion Loader Animation */
+.fashion-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+  z-index: 9999;
+}
+
+.runway {
+  position: relative;
+  width: 300px;
+  height: 100px;
+  border-bottom: 2px solid #fff;
+  overflow: hidden;
+}
+
+.model {
+  position: absolute;
+  width: 20px;
+  height: 60px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 10px 10px 5px 5px;
+  bottom: 0;
+}
+
+.model::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #fbbf24;
+  border-radius: 50%;
+}
+
+/* Advanced Button Styles */
+.portal-button {
+  position: relative;
+  padding: 15px 30px;
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.portal-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.portal-button:hover::before {
+  left: 100%;
+}
+
+.portal-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* 3D Card Effects */
+.wardrobe-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.wardrobe-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.wardrobe-card:hover .wardrobe-card-inner {
+  transform: rotateY(180deg);
+}
+
+.wardrobe-card-front,
+.wardrobe-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.wardrobe-card-front {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.wardrobe-card-back {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/* Floating Animation */
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Glow Effects */
+.glow-effect {
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.6); }
+  50% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.9); }
+}
+
+/* Particle Background */
+.particle-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #fff, transparent);
+  border-radius: 50%;
+  animation: particle-float 6s infinite linear;
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Morphing Shapes */
+.morphing-shape {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 50%;
+  animation: morph 4s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 50%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 25% 75% 75% 25%;
+    transform: rotate(90deg);
+  }
+  50% {
+    border-radius: 75% 25% 25% 75%;
+    transform: rotate(180deg);
+  }
+  75% {
+    border-radius: 25% 75% 75% 25%;
+    transform: rotate(270deg);
+  }
+}
+
+/* Interactive Cursor */
+.interactive-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+.interactive-cursor.hover {
+  transform: scale(2);
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.8), transparent);
+}
+
+/* Loading Spinner */
+.fashion-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top: 3px solid #ff6b6b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative;
+}
+
+.fashion-spinner::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  border-top: 3px solid #4ecdc4;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite reverse;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .wardrobe-title {
+    font-size: 3rem;
+  }
+
+  .portal-button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  .wardrobe-card {
+    margin: 10px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .wardrobe-card-front {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  }
+
+  .wardrobe-card-back {
+    background: linear-gradient(135deg, #553c9a 0%, #6b46c1 100%);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .wardrobe-title {
+    -webkit-text-fill-color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .portal-button {
+    border: 2px solid #ffffff;
+  }
+}

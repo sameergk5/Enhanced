@@ -1,0 +1,121 @@
+Product Requirements Document (PRD) – Wardrobe AI
+1. Product Overview
+Wardrobe AI is a fashion-tech social platform that merges virtual identity, AI fashion styling, and gamified communities. It enables users to:
+- Create a hyper-realistic avatar identical to themselves.
+- Add real-world clothes to a digital wardrobe.
+- Experiment with outfits virtually, share looks, and socialize with friends/communities.
+- Earn skins, badges, and rewards through streaks and engagement.
+- Switch between unique modes (bubbly, delulu, rizz, bro, professional, etc.) for different experiences.
+- Receive AI-powered outfit suggestions based on skin-tone, events, and trends.
+- Participate in anonymous rating communities, share looks to social media, and rent outfits.
+- Engage with fantasy-driven storytelling (Delulu mode) tailored to interests, hobbies, and fantasies.
+Wardrobe AI aims to be the next big social media app, surpassing Instagram, Snapchat, and TikTok.
+2. Objectives
+- Drive engagement with streaks, delusional stories, and gamified communities.
+- Deliver personalization via interest-based profiles and AI.
+- Provide fashion intelligence using real-world styling logic.
+- Establish revenue streams from skins, rentals, e-commerce, and premium features.
+- Build scalable, secure infrastructure with smooth 3D rendering.
+3. Target Audience
+- Gen Z / Millennials: Fashion + social engagement.
+- Young Professionals: Professional styling and office looks.
+- Fashion Enthusiasts: Wardrobe rentals and AI styling.
+- Older Generations (40+): Simplified, nostalgic experiences.
+4. Key Features
+4.1 Virtual Avatar System
+- AI-powered avatars based on selfies.
+- Preset poses, dances, gestures.
+- Optimized 3D rendering for scalability.
+- AR-based try-on (future).
+4.2 Virtual Wardrobe
+- Upload clothes via photo + AI tagging.
+- AI outfit pairing suggestions.
+- Occasion-based styling.
+- Least-used dress tracking.
+4.3 Social & Community
+- Google authentication + mobile number login.
+- Wardrobe sharing (private, friends, public).
+- Anonymous look rating in communities.
+- Daily looks → streak system.
+- Share to multiple social platforms.
+4.4 Gamification & Rewards
+- Streaks unlock skins (10 days = goggles, 25 = hat, 50 = jacket, etc.).
+- Badges: Most Generous, Fashion Icon, Community Star.
+- Personalized skins (Gym, Harry Potter, Biker themes).
+- AI-generated fantasy stories in Delulu mode.
+- In-app currency “Threads” for skins, rentals, and cosmetics.
+4.5 Modes & UI Themes
+- Bubbly, Bro, Delulu, Rizz, Professional, Sweet 60, 45th Legend.
+- Event-specific modes (Valentine’s, Diwali, Christmas).
+- Admin-enabled festival themes.
+- Custom UI/UX per mode.
+4.6 Fashion AI
+- Skin-tone based color matching.
+- Shirt–Pant–Accessory smart pairing.
+- Swipe-style look previews.
+- AI stylist chat assistant.
+- Trend-sync via fashion APIs.
+4.7 Public Wardrobe & Rentals
+- Public wardrobe sharing.
+- Outfit rentals inside app.
+- Brand integration for real-world rentals.
+- UGC fashion marketplace (users design/sell skins).
+4.8 Avatar Social Features
+- Virtual lounges & voice chat.
+- Collaborative lookbooks.
+- AI-generated photoshoots with global locations.
+- AR Mirrors for malls/events.
+4.9 Analytics & Insights
+- Personal style analytics: most worn colors, top looks, evolution timeline.
+- Premium advanced insights.
+5. Infrastructure & Security
+- Platforms: Web (React/Next.js), Android/iOS (React Native/Flutter).
+- Backend: Node.js/Python with microservices on Kubernetes.
+- Databases: PostgreSQL + MongoDB/DynamoDB.
+- Rendering: Unity/Unreal + ARKit/ARCore.
+- Authentication: Google OAuth2/Firebase Auth.
+- Anti-hack: Encrypted storage, API signing, secure cloud rendering.
+6. Monetization Strategy
+- Virtual skins & cosmetics (in-app purchases).
+- Premium subscriptions (AI stylist, wardrobe space, insights).
+- Affiliate sales (clothing e-commerce).
+- User-generated marketplace commissions.
+- Brand partnerships and sponsored events.
+- In-app currency 'Threads' (buyable and earnable).
+7. KPIs & Metrics
+- DAU/MAU.
+- Average wardrobe size.
+- Outfit trials per user.
+- Community participation rate.
+- Streak retention.
+- Top sharers and most generous users.
+- AR mirror engagement.
+- Revenue per user.
+8. Timeline & Roadmap
+Phase 1 (0–6 months): MVP
+- Avatar creation, wardrobe upload.
+- Outfit try-on + sharing.
+- Streak & basic rewards.
+- Bubbly/Bro/Professional modes.
+- Google authentication.
+
+Phase 2 (6–12 months): Expansion
+- Communities + ratings.
+- Delulu mode + fantasy stories.
+- Public wardrobe + rentals.
+- Skins & gamified economy.
+- Festival/special modes.
+
+Phase 3 (12–24 months): Scale
+- Global brand partnerships.
+- Optimized lightweight 3D avatars.
+- Cross-platform (VR/AR glasses).
+- Full-fledged virtual economy.
+9. Risks & Challenges
+- High cost of 3D rendering at scale.
+- Community moderation challenges.
+- Licensing/IP risks for branded skins.
+- Privacy concerns with user wardrobe/body data.
+- Monetization acceptance balance.
+10. Vision
+Wardrobe AI will redefine social media by combining fashion, personalization, and gamification. It will evolve from a wardrobe app into a lifestyle identity platform, allowing users to live their real, virtual, and fantasy selves in one space.

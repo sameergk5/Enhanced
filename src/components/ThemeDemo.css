@@ -1,0 +1,137 @@
+/**
+ * Theme Demo Styles - Wardrobe AI
+ * CSS styles for the theme demonstration component
+ */
+
+.theme-demo {
+  padding: 2rem;
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+.demo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-surface-variant);
+}
+
+.demo-header h2 {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h2);
+  margin: 0;
+}
+
+.header-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.demo-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.demo-section {
+  background: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-large);
+  border: 1px solid var(--color-surface-variant);
+  box-shadow: var(--shadow-elevation-1);
+}
+
+.demo-section h3 {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h3);
+  margin: 0 0 1rem 0;
+}
+
+.color-showcase {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-box {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--border-radius-small);
+  border: 2px solid var(--color-surface-variant);
+}
+
+.color-item span {
+  font-size: var(--font-size-body-small);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.ui-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.demo-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+.demo-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevation-2);
+}
+
+.demo-card {
+  padding: 1.5rem;
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+.demo-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h4);
+}
+
+.demo-card p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: var(--font-size-body);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .theme-demo {
+    padding: 1rem;
+  }
+
+  .demo-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .demo-content {
+    grid-template-columns: 1fr;
+  }
+
+  .color-showcase {
+    justify-content: center;
+  }
+}

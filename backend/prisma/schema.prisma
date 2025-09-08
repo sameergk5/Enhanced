@@ -1,0 +1,453 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Visibility levels for user wardrobe/profile sharing
+enum WardrobeVisibility {
+  private
+  friends
+  public
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  firebaseUid   String?  @unique
+  googleId      String?  @unique
+  username      String   @unique
+  displayName   String
+  avatar        String?
+  bio           String?
+  isPrivate     Boolean  @default(false)
+  wardrobeVisibility WardrobeVisibility @default(private)
+  isVerified    Boolean  @default(false)
+  emailVerified Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Profile details
+  profile UserProfile?
+
+  // Fashion preferences
+  styleProfile StyleProfile?
+
+  // 3D Avatar
+  avatars Avatar3D[]
+
+  // Wardrobe
+  garments Garment[]
+  outfits  Outfit[]
+
+  // Social features
+  posts     Post[]
+  likes     Like[]
+  comments  Comment[]
+  followers Follow[]  @relation("UserFollowers")
+  following Follow[]  @relation("UserFollowing")
+
+  // Shopping & Recommendations
+  wishlist WishlistItem[]
+
+  // Gamification
+  streak UserStreak?
+  virtualItems UserVirtualItem[]
+
+  // Permissions
+  wardrobePermission WardrobePermission?
+
+  @@map("users")
+}
+
+model UserProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  firstName   String?
+  lastName    String?
+  dateOfBirth DateTime?
+  gender      String?
+  location    String?
+  website     String?
+  phone       String?
+
+  // Body measurements for avatar
+  height        Float?
+  weight        Float?
+  chestBust     Float?
+  waist         Float?
+  hips          Float?
+  shoulderWidth Float?
+
+  // Preferences
+  currency String @default("USD")
+  language String @default("en")
+  timezone String @default("UTC")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_profiles")
+}
+
+model StyleProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Style preferences
+  preferredStyles String[] // casual, formal, boho, minimalist, etc.
+  preferredColors String[] // hex codes or color names
+  brandPrefs      String[] // preferred brands
+  priceRange      Json // {min: number, max: number}
+
+  // AI-analyzed style
+  styleVector  Float[] // AI-generated style embedding
+  colorPalette String[] // AI-suggested color palette
+
+  // Lifestyle factors
+  occupation String?
+  lifestyle  String[] // active, professional, social, etc.
+  occasions  String[] // work, casual, formal, party, etc.
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("style_profiles")
+}
+
+model Avatar3D {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name        String
+  description String?
+
+  // 3D Model data
+  modelUrl     String // URL to .glb/.gltf file
+  thumbnailUrl String // Preview image
+
+  // Hunyuan3D specific
+  hunyuanId String? // Hunyuan model ID
+  meshData  Json? // 3D mesh metadata
+
+  // Customization
+  bodyType  String // slim, athletic, curvy, etc.
+  skinTone  String
+  hairStyle String
+  hairColor String
+  eyeColor  String
+
+  // Settings
+  isDefault Boolean @default(false)
+  isPublic  Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("avatars_3d")
+}
+
+model Garment {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Basic info
+  name        String
+  description String?
+  category    String // top, bottom, dress, shoes, accessory
+  subcategory String? // t-shirt, jeans, sneakers, etc.
+  brand       String?
+
+  // Visual
+  images  String[] // URLs to garment images
+  color   String
+  pattern String? // solid, striped, floral, etc.
+
+  // Metadata
+  size     String?
+  material String?
+  care     String? // care instructions
+
+  // Shopping
+  purchasePrice Float?
+  purchaseDate  DateTime?
+  retailUrl     String?
+
+  // 3D/AR data
+  model3dUrl String? // 3D model for virtual try-on
+  arMetadata Json? // AR positioning data
+
+  // Usage tracking
+  wearCount Int       @default(0)
+  lastWorn  DateTime?
+
+  // Organization
+  tags String[]
+
+  // Relations
+  outfitItems OutfitItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("garments")
+}
+
+model Outfit {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name        String
+  description String?
+
+  // Occasion and style
+  occasion String[] // work, casual, date, party
+  season   String[] // spring, summer, fall, winter
+  weather  String[] // sunny, rainy, cold, hot
+
+  // Visual
+  imageUrl String? // Outfit photo/render
+
+  // Tracking
+  wearCount Int       @default(0)
+  lastWorn  DateTime?
+
+  // Social
+  isPublic   Boolean @default(false)
+  isTemplate Boolean @default(false)
+
+  // Relations
+  items OutfitItem[]
+  posts Post[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("outfits")
+}
+
+model OutfitItem {
+  id        String  @id @default(uuid())
+  outfitId  String
+  outfit    Outfit  @relation(fields: [outfitId], references: [id], onDelete: Cascade)
+  garmentId String
+  garment   Garment @relation(fields: [garmentId], references: [id], onDelete: Cascade)
+
+  position Json? // 3D positioning data for avatar
+
+  @@unique([outfitId, garmentId])
+  @@map("outfit_items")
+}
+
+model Post {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  content   String?
+  imageUrls String[]
+
+  // Fashion-specific
+  outfitId String?
+  outfit   Outfit?  @relation(fields: [outfitId], references: [id])
+  tags     String[] // #ootd, #vintage, #sustainable
+
+  // Engagement
+  likes    Like[]
+  comments Comment[]
+
+  // Visibility
+  isPublic Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("posts")
+}
+
+model Like {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+  @@map("likes")
+}
+
+model Comment {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  content String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("comments")
+}
+
+model Follow {
+  id          String @id @default(uuid())
+  followerId  String
+  follower    User   @relation("UserFollowing", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId String
+  following   User   @relation("UserFollowers", fields: [followingId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([followerId, followingId])
+  @@map("follows")
+}
+
+model WishlistItem {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name        String
+  description String?
+  imageUrl    String?
+  price       Float?
+  retailUrl   String?
+
+  // Categorization
+  category String
+  brand    String?
+
+  // Priority
+  priority String @default("medium") // high, medium, low
+
+  createdAt DateTime @default(now())
+
+  @@map("wishlist_items")
+}
+
+// User streak tracking (Task 6.1)
+model UserStreak {
+  id               String    @id @default(uuid())
+  userId           String    @unique
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentStreak    Int       @default(0)
+  longestStreak    Int       @default(0)
+  lastActivityDate DateTime?
+  totalActivities  Int       @default(0)
+  lastActivityType String?
+  updatedAt        DateTime  @updatedAt
+  createdAt        DateTime  @default(now())
+
+  @@map("user_streaks")
+}
+
+// Virtual items for gamification (Task 6.3)
+model VirtualItem {
+  id          String @id @default(uuid())
+  itemType    String // 'accessory', 'avatar_skin', 'badge', etc.
+  itemId      String // unique identifier for the specific item
+  name        String
+  description String?
+  imageUrl    String?
+  rarity      String @default("common") // common, rare, epic, legendary
+  category    String // 'goggles', 'hat', 'badge', etc.
+
+  // Metadata for rendering/display
+  metadata    Json? // { color: "#ff0000", style: "vintage", etc. }
+
+  // Availability
+  isActive    Boolean @default(true)
+
+  // Relations
+  rewards     RewardMilestone[]
+  userItems   UserVirtualItem[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([itemType, itemId])
+  @@map("virtual_items")
+}
+
+// Reward milestones system (Task 6.3)
+model RewardMilestone {
+  id            String @id @default(uuid())
+  milestoneType String // 'streak', 'achievement', 'level', etc.
+  threshold     Int    // e.g., 10 for "10-day streak"
+
+  // Reward details
+  virtualItemId String
+  virtualItem   VirtualItem @relation(fields: [virtualItemId], references: [id], onDelete: Cascade)
+
+  // Metadata
+  title         String // "10-Day Warrior"
+  description   String // "Awarded for maintaining a 10-day streak"
+
+  isActive      Boolean @default(true)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([milestoneType, threshold])
+  @@map("reward_milestones")
+}
+
+// User's virtual item inventory (Task 6.3)
+model UserVirtualItem {
+  id            String @id @default(uuid())
+  userId        String
+  user          User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  virtualItemId String
+  virtualItem   VirtualItem @relation(fields: [virtualItemId], references: [id], onDelete: Cascade)
+
+  // When and how it was obtained
+  obtainedAt    DateTime @default(now())
+  source        String   @default("reward") // 'reward', 'purchase', 'gift', etc.
+
+  // Status
+  isEquipped    Boolean  @default(false)
+
+  createdAt     DateTime @default(now())
+
+  @@unique([userId, virtualItemId])
+  @@map("user_virtual_items")
+}
+
+// Wardrobe & profile privacy / sharing permissions
+model WardrobePermission {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Visibility & privacy controls
+  shareWardrobePublic  Boolean @default(false)
+  allowOutfitSharing   Boolean @default(true)
+  allowAvatarDownloads Boolean @default(false)
+  allowLookRating      Boolean @default(true)
+  allowAnonymousViews  Boolean @default(false)
+
+  // Future extensibility (JSON blob for dynamic rules)
+  advancedRules Json? // e.g. { "shareScopes": ["followers"], "blockedUsers": [] }
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("wardrobe_permissions")
+}

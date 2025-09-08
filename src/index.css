@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Wardrobe AI Design System - Enhanced Fashion-forward gradients and modern aesthetics */
+
+@layer base {
+  :root {
+    /* Enhanced Fashion-forward brand colors */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* Enhanced Primary: Beautiful purple to pink gradient */
+    --primary: 280 90% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 300 80% 70%;
+
+    /* Enhanced Secondary: Soft rose with better contrast */
+    --secondary: 340 100% 95%;
+    --secondary-foreground: 280 90% 60%;
+
+    /* Enhanced Muted: Better neutral tones */
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    /* Enhanced Accent: Warmer rose gold */
+    --accent: 25 100% 85%;
+    --accent-foreground: 280 90% 60%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 280 90% 60%;
+
+    /* Enhanced Fashion gradients with more sophisticated colors */
+    --gradient-hero: linear-gradient(135deg, hsl(280 90% 60%), hsl(300 80% 70%), hsl(320 70% 80%), hsl(340 60% 90%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(340 100% 98%), hsl(320 100% 96%));
+    --gradient-accent: linear-gradient(90deg, hsl(280 90% 60%), hsl(25 100% 85%), hsl(45 100% 80%));
+
+    /* Enhanced Elegant shadows with better depth */
+    --shadow-card: 0 8px 32px -8px hsl(280 90% 60% / 0.15);
+    --shadow-hero: 0 32px 64px -16px hsl(280 90% 60% / 0.3);
+    --shadow-glow: 0 0 48px hsl(280 90% 60% / 0.4);
+
+    /* Enhanced Smooth transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 280 90% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 300 80% 70%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 25 100% 85%;
+    --accent-foreground: 240 10% 3.9%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 280 90% 60%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 280 90% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 280 90% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced custom animations */
+@layer utilities {
+  .animate-float-enhanced {
+    animation: float-enhanced 4s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-shimmer-enhanced {
+    animation: shimmer-enhanced 3s linear infinite;
+  }
+}
+
+@keyframes float-enhanced {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+
+  50% {
+    transform: translateY(-25px) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-15px) rotate(-2deg);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px hsl(280 90% 60% / 0.3);
+  }
+
+  to {
+    box-shadow: 0 0 40px hsl(280 90% 60% / 0.6);
+  }
+}
+
+@keyframes shimmer-enhanced {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}

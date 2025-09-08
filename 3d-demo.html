@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Demo - Wardrobe AI</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .demo-container {
+            text-align: center;
+            color: white;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        .demo-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .demo-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        .demo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .demo-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 0.5rem;
+        }
+        .demo-button:hover {
+            transform: translateY(-2px);
+        }
+        .tech-stack {
+            margin-top: 2rem;
+            opacity: 0.8;
+        }
+        .tech-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            margin: 0.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">🌟 Wardrobe AI 3D</h1>
+        <p class="demo-subtitle">
+            Experience the future of fashion with immersive 3D technology
+        </p>
+
+        <div class="demo-features">
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>Interactive 3D Homepage</h3>
+                <p>Stunning 3D mannequins, floating clothing items, and interactive portals</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👗</div>
+                <h3>3D Virtual Wardrobe</h3>
+                <p>Organize clothing in 3D space with realistic lighting and physics</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>Interactive Elements</h3>
+                <p>Click, hover, and interact with every element in real-time</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Smooth Animations</h3>
+                <p>React Spring powered animations with beautiful transitions</p>
+            </div>
+        </div>
+
+        <div>
+            <button class="demo-button" onclick="launchApp()">
+                🚀 Launch 3D Experience
+            </button>
+            <button class="demo-button" onclick="showWardrobe()">
+                👔 View 3D Wardrobe
+            </button>
+        </div>
+
+        <div class="tech-stack">
+            <p><strong>Powered by:</strong></p>
+            <span class="tech-tag">Three.js</span>
+            <span class="tech-tag">React Three Fiber</span>
+            <span class="tech-tag">React Spring</span>
+            <span class="tech-tag">Framer Motion</span>
+            <span class="tech-tag">WebGL</span>
+            <span class="tech-tag">TypeScript</span>
+        </div>
+    </div>
+
+    <script>
+        function launchApp() {
+            // In a real implementation, this would navigate to your React app
+            alert('🎉 Launching 3D Homepage! This would redirect to your React app with the InteractiveHomepage component.');
+
+            // For demo purposes, show instructions
+            const instructions = `
+To see the actual 3D experience:
+
+1. Start your development server:
+   npm run dev
+
+2. Navigate to the homepage (/) to see the 3D interactive homepage
+3. Click "Enter Wardrobe" or go to /wardrobe for the 3D wardrobe experience
+
+Features you'll see:
+✨ Floating 3D avatars and clothing
+🎮 Interactive hover effects
+🌟 Particle effects and sparkles
+🎯 Smooth camera controls
+🎨 Real-time lighting and shadows
+`;
+
+            setTimeout(() => alert(instructions), 500);
+        }
+
+        function showWardrobe() {
+            alert('👗 Opening 3D Wardrobe! This showcases a full 3D wardrobe with interactive clothing items, mirrors, and organization systems.');
+
+            const wardrobeFeatures = `
+3D Wardrobe Features:
+
+🏠 Realistic wardrobe structure with shelves and hanging rods
+👕 Interactive clothing items you can click and move
+🪞 Reflective mirrors for realistic visualization
+🎨 Category filtering (shirts, pants, dresses, etc.)
+✨ Particle effects when hovering over items
+📊 Real-time stats and item details
+🎮 Full camera controls (zoom, rotate, pan)
+`;
+
+            setTimeout(() => alert(wardrobeFeatures), 500);
+        }
+
+        // Add some interactive particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = '#fff';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.opacity = '0.7';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.transition = 'transform 3s linear, opacity 3s linear';
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.style.transform = `translateY(-${window.innerHeight + 100}px)`;
+                particle.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => {
+                document.body.removeChild(particle);
+            }, 3000);
+        }
+
+        // Create floating particles
+        setInterval(createParticle, 500);
+    </script>
+</body>
+</html>
