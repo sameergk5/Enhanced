@@ -1,14 +1,14 @@
 import FeaturesSection from "@/components/FeaturesSection";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import Navigation from "@/components/Navigation";
 import SocialSection from "@/components/SocialSection";
 import WardrobePreview from "@/components/WardrobePreview";
 
 const Index = () => {
 	return (
 		<div className="min-h-screen">
-			<Navigation />
+			<Header />
 			<main>
 				<HeroSection />
 				<FeaturesSection />

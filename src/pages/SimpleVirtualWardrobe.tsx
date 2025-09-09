@@ -1,34 +1,25 @@
+import Header from "@/components/Header";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Camera, Heart, Plus, Sparkles } from "lucide-react";
+import { useSearchParams } from 'react-router-dom';
 
 const SimpleVirtualWardrobe = () => {
+	const [search] = useSearchParams();
+	const category = search.get('category') || 'all';
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
-			{/* Header */}
-			<header className="bg-white/10 backdrop-blur-sm border-b border-white/20 p-4">
-				<div className="max-w-7xl mx-auto flex items-center justify-between">
-					<div className="flex items-center gap-2">
-						<div className="w-8 h-8 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-lg flex items-center justify-center">
-							<Sparkles className="w-5 h-5 text-white" />
-						</div>
-						<h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-							Virtual Wardrobe
-						</h1>
-					</div>
-					<Button variant="outline">Back to Home</Button>
-				</div>
-			</header>
+			<Header />
 
 			<div className="max-w-7xl mx-auto p-6">
 				{/* Hero Section */}
 				<div className="text-center mb-8">
 					<h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-4">
-						Your Virtual Wardrobe
+						{category === 'all' ? 'Your Virtual Wardrobe' : `${category.charAt(0).toUpperCase()}${category.slice(1)} Collection`}
 					</h1>
 					<p className="text-xl text-gray-600 mb-8">
-						Manage your closet digitally and get AI-powered styling suggestions
+						{category === 'all' ? 'Manage your closet digitally and get AI-powered styling suggestions' : `Showing items in the ${category} category.`}
 					</p>
 
 					<div className="flex justify-center gap-4">

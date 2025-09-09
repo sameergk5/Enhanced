@@ -1,7 +1,6 @@
-import Header from "@/components/Header";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { Heart, Plus, Sparkles, Star, TrendingUp, Users } from 'lucide-react';
+import { Heart, Home, Plus, Sparkles, Star, TrendingUp, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -9,7 +8,23 @@ const Dashboard = () => {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-			<Header />
+			{/* Header */}
+			<header className="bg-white/10 backdrop-blur-sm border-b border-white/20 p-4">
+				<div className="max-w-7xl mx-auto flex items-center justify-between">
+					<div className="flex items-center gap-2">
+						<div className="w-8 h-8 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-lg flex items-center justify-center">
+							<Sparkles className="w-5 h-5 text-white" />
+						</div>
+						<h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+							Wardrobe AI Dashboard
+						</h1>
+					</div>
+					<Button variant="outline" onClick={() => navigate('/')}>
+						<Home className="w-4 h-4 mr-2" />
+						Back to Home
+					</Button>
+				</div>
+			</header>
 
 			{/* Welcome Section */}
 			<div className="pt-12 pb-6">

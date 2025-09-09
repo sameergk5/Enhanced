@@ -119,6 +119,10 @@
 
 /* Enhanced custom animations */
 @layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
   .animate-float-enhanced {
     animation: float-enhanced 4s ease-in-out infinite;
   }
@@ -129,6 +133,17 @@
 
   .animate-shimmer-enhanced {
     animation: shimmer-enhanced 3s linear infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
   }
 }
 
