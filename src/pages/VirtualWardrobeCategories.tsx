@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Briefcase, CloudSun, Dumbbell, Footprints, Gem, Mountain, Shirt, ShoppingBag, Sparkles, Sun, Watch } from 'lucide-react';
 import React from 'react';
 // Attempt to reference the image with spaces using an encoded URL. Fallback provided below if it fails.
-const closetBgUrl = new URL('../assets/Modern%20Closet%20with%20Digital%20Avatar.png', import.meta.url).href;
+//const closetBgUrl = new URL('../assets/Modern%20Closet%20with%20Digital%20Avatar.png', import.meta.url).href;
+const closetBgUrl = new URL('../assets/New.png', import.meta.url).href;
 
 interface CategoryDef {
 	id: string;
@@ -35,18 +36,18 @@ const LAYOUT_STORAGE_KEY = 'vw-category-layout-v1';
 
 // User-refined coordinates (fractions of intrinsic displayed image) provided via edit mode.
 const defaultLayout: Record<string, LayoutEntry> = {
-	tops: { x: 0.15825873757052275, y: 0.2422701322120048, w: 0.105 },
-	bottoms: { x: 0.15391919107810728, y: 0.6368999231411452, w: 0.105 },
-	outerwear: { x: 0.3177379919914329, y: 0.23982916053878547, w: 0.105 },
-	footwear: { x: 0.6453756352034613, y: 0.6320179177166396, w: 0.105 },
-	accessories: { x: 0.3199077859303292, y: 0.07058585834318978, w: 0.105 },
-	activewear: { x: 0.6529698519115327, y: 0.24145647498759834, w: 0.105 },
-	formal: { x: 0.803227575209232, y: 0.08360456016789386, w: 0.105 },
-	lounge: { x: 0.31828043012981266, y: 0.6360862659167388, w: 0.105 },
-	seasonal: { x: 0.8086520393637843, y: 0.23738812678749915, w: 0.105 },
-	premium: { x: 0.6415785268494256, y: 0.08523189789598187, w: 0.105 },
-	styled: { x: 0.8129915444708226, y: 0.6352726086923324, w: 0.105 },
-	all: { x: 0.15880117570890254, y: 0.07139951556759622, w: 0.105 }
+	tops: { x: 0.27421876788139343, y: 0.5246134879871801, w: 0.105 },
+	bottoms: { x: 0.3843750059604645, y: 0.5237998307627737, w: 0.105 },
+	outerwear: { x: 0.3851562440395355, y: 0.10638730388064276, w: 0.105 },
+	footwear: { x: 0.701953113079071, y: 0.6865337587667423, w: 0.105 },
+	accessories: { x: 0.27617189288139343, y: 0.10638730388064276, w: 0.105 },
+	activewear: { x: 0.595703125, y: 0.5221725163139608, w: 0.105 },
+	formal: { x: 0.704296886920929, y: 0.10801464936848913, w: 0.105 },
+	lounge: { x: 0.27460938692092896, y: 0.6873474159911487, w: 0.105 },
+	seasonal: { x: 0.705078125, y: 0.5221725163139608, w: 0.105 },
+	premium: { x: 0.5960937738418579, y: 0.10801464936848913, w: 0.105 },
+	styled: { x: 0.5941406488418579, y: 0.6873474159911487, w: 0.105 },
+	all: { x: 0.3843750059604645, y: 0.682465410566643, w: 0.105 }
 };
 
 const VirtualWardrobeCategories = () => {
@@ -215,11 +216,9 @@ const VirtualWardrobeCategories = () => {
 					src={closetBgUrl}
 					onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackHero; }}
 					alt="Virtual wardrobe background"
-					className="h-full w-auto object-contain pointer-events-none select-none"
+					className="w-full h-full object-cover pointer-events-none select-none"
 					style={{
-						filter: 'brightness(0.95)',
-						maxWidth: '100%',
-						aspectRatio: 'auto'
+						filter: 'brightness(0.95)'
 					}}
 					onLoad={measure}
 				/>
@@ -228,6 +227,7 @@ const VirtualWardrobeCategories = () => {
 			{/* Content */}
 			<div className="relative z-10 flex flex-col min-h-screen">
 				<Header />
+				{/* Edit button disabled per request */}
 				{/**
 					 * MANUAL LAYOUT COORDINATES
 					 * x,y are fractions (0..1) of the image's width/height.

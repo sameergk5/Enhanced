@@ -15,6 +15,7 @@ import activityRoutes from './routes/activity.js'
 import aiRoutes from './routes/ai.js'
 import authRoutes from './routes/auth.js'
 import avatarRoutes from './routes/avatars.js'
+import communityRoutes from './routes/community.js'
 import freeAIRoutes from './routes/freeAI.js'
 import garmentRoutes from './routes/garments.js'
 import permissionRoutes from './routes/permissions.js'
@@ -65,6 +66,7 @@ app.use('/api/ai', authenticateToken, aiRoutes)
 app.use('/api/free-ai', freeAIRoutes)
 app.use('/api/permissions', authenticateToken, permissionRoutes)
 app.use('/api/visibility', authenticateToken, visibilityRoutes)
+app.use('/api/community', authenticateToken, communityRoutes)
 // Conditional auth wrapper for test mode support (x-test-user header bypass)
 const streakAuth = (req, res, next) => {
 	if (req.user && req.headers['x-test-user']) return next()

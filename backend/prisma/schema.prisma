@@ -60,6 +60,10 @@ model User {
   streak UserStreak?
   virtualItems UserVirtualItem[]
 
+  // Community looks & ratings
+  communityLooks CommunityLook[]
+  lookRatings    LookRating[] @relation("UserLookRatings")
+
   // Permissions
   wardrobePermission WardrobePermission?
 
@@ -231,6 +235,9 @@ model Outfit {
   // Relations
   items OutfitItem[]
   posts Post[]
+
+  // Community look submissions referencing this outfit
+  communityLooks CommunityLook[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -450,4 +457,38 @@ model WardrobePermission {
   updatedAt DateTime @updatedAt
 
   @@map("wardrobe_permissions")
+}
+
+// Community anonymous look rating feature (Task 9)
+model CommunityLook {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outfitId      String?  // Optional reference to an existing outfit composition
+  outfit        Outfit?  @relation(fields: [outfitId], references: [id])
+  avatarImageUrl String? // Snapshot image of avatar + outfit (stored/rendered elsewhere)
+  lookData      Json?    // Serialized outfit items / metadata for anonymity
+  status        String   @default("active") // active, closed, removed
+  totalScore    Int      @default(0)
+  ratingCount   Int      @default(0)
+  averageScore  Float    @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  ratings LookRating[]
+
+  @@map("community_looks")
+}
+
+model LookRating {
+  id        String   @id @default(uuid())
+  lookId    String
+  look      CommunityLook @relation(fields: [lookId], references: [id], onDelete: Cascade)
+  raterUserId String
+  rater      User    @relation("UserLookRatings", fields: [raterUserId], references: [id], onDelete: Cascade)
+  score      Int     // 1-5
+  createdAt  DateTime @default(now())
+
+  @@unique([lookId, raterUserId])
+  @@map("look_ratings")
 }

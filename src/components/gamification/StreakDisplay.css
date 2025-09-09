@@ -1,8 +1,9 @@
 /* StreakDisplay.css */
 
 .streak-display {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  /* Use theme primary/secondary colors instead of fixed gradient */
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--color-on-primary, #ffffff);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -24,7 +25,7 @@
 
 .streak-display.compact {
   padding: 12px 16px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   border-radius: 24px;
   display: inline-flex;
   align-items: center;
@@ -32,7 +33,7 @@
 }
 
 .streak-display.error {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  background: linear-gradient(135deg, var(--color-error) 0%, var(--color-error) 80%);
 }
 
 .streak-compact-content {
@@ -91,7 +92,8 @@
   font-weight: 800;
   line-height: 1;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(45deg, #fff, #f0f8ff);
+  /* Use surface + background variant for gradient text */
+  background: linear-gradient(45deg, var(--color-surface), var(--color-background));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

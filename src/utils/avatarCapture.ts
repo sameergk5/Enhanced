@@ -38,3 +38,19 @@ export async function captureAndDownload(el: HTMLElement, opts: CaptureOptions =
 	downloadBlob(blob, opts.fileName || 'avatar-look.png')
 	return blob
 }
+
+// Capture a three.js avatar canvas by container selector or element id and return a data URL
+export function captureAvatarCanvas(container?: HTMLElement | string): string {
+	let root: HTMLElement | null = null
+	if (!container) {
+		root = document.querySelector('[data-avatar-root]') as HTMLElement | null
+	} else if (typeof container === 'string') {
+		root = document.getElementById(container)
+	} else {
+		root = container
+	}
+	if (!root) throw new Error('Avatar container not found')
+	const canvas: HTMLCanvasElement | null = root.querySelector('canvas')
+	if (!canvas) throw new Error('Avatar canvas not found')
+	return canvas.toDataURL('image/png')
+}
